@@ -1,0 +1,540 @@
+/* =========================================
+   APP — SCRAPBOOK DELICADO
+========================================= */
+
+/* PRESENTACIÓN */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 24px 80px;
+  text-align: center;
+  background-color: #fff9f2;
+  background-image: radial-gradient(#e8c9c5 0.8px, transparent 0.8px);
+  background-size: 22px 22px;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid #e9d9ce;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 760px;
+  margin: auto;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 22px;
+  color: #929b68;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.hero-sticker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  height: 130px;
+  margin: 0 auto 18px;
+}
+
+.hero-sticker img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hero-sticker span {
+  position: absolute;
+  right: 0;
+  bottom: 5px;
+  color: #d995a9;
+  font-size: 25px;
+}
+
+.hero-small {
+  color: #a58d82;
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+  font-style: italic;
+}
+
+.hero h1 {
+  margin-top: 8px;
+  color: #79645e;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(58px, 10vw, 105px);
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.hero h1 em {
+  color: #d995a9;
+  font-weight: 500;
+}
+
+.hero-subtitle {
+  margin-top: 13px;
+  color: #929b68;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+.hero-divider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+  margin: 27px auto;
+  color: #d995a9;
+}
+
+.hero-divider::before,
+.hero-divider::after {
+  content: "";
+  width: 40px;
+  height: 1px;
+  background: #e7c9c7;
+}
+
+.hero-description {
+  max-width: 430px;
+  margin: 0 auto;
+  color: #907e75;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.open-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+  padding: 14px 27px;
+  color: #fffaf5;
+  background: #d995a9;
+  border: 1px solid #d995a9;
+  border-radius: 3px;
+  box-shadow: 3px 4px 0 #e9c6c5;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.open-button:hover {
+  background: #c98498;
+  box-shadow: 1px 2px 0 #e9c6c5;
+}
+
+.hero-bottom {
+  display: block;
+  margin-top: 38px;
+  color: #a58d82;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+.floating-decoration {
+  position: absolute;
+  z-index: 1;
+  color: #d995a9;
+  font-family: "Playfair Display", serif;
+  font-size: 25px;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* ELEMENTOS COMPARTIDOS */
+
+.section-padding {
+  padding: 90px 24px;
+}
+
+.section-label {
+  display: inline-block;
+  color: #929b68;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+/* INVITACIÓN */
+
+.invitation {
+  position: relative;
+  padding: 105px 24px;
+  background-color: #e9ebdc;
+  background-image: radial-gradient(#c9cdb1 0.8px, transparent 0.8px);
+  background-size: 24px 24px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.invitation-card {
+  position: relative;
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 65px 45px;
+  background: #fffaf5;
+  border: 1px solid #e7d7ca;
+  box-shadow: 5px 6px 0 #d5d8c2;
+}
+
+.invitation-card::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px dashed #e8c9c6;
+  pointer-events: none;
+}
+
+.invitation-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.invitation-card h2 {
+  margin: 20px 0;
+  color: #79645e;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(38px, 6vw, 52px);
+  font-weight: 500;
+}
+
+.invitation-card h2 em {
+  color: #d995a9;
+  font-weight: 500;
+}
+
+.invitation-text {
+  max-width: 420px;
+  margin: 0 auto;
+  color: #907e75;
+  font-size: 13px;
+  line-height: 2;
+}
+
+.event-details {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 38px;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  color: #79645e;
+  font-size: 12px;
+}
+
+.detail svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: #d995a9;
+}
+
+.detail div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail span {
+  color: #929b68;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.detail strong {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.card-flower {
+  position: absolute;
+  right: 20px;
+  bottom: 12px;
+  color: #d995a9;
+  font-size: 28px;
+  opacity: 0.7;
+}
+
+/* NOTA FINAL */
+
+.little-note {
+  position: relative;
+  padding: 75px 24px;
+  background: #f8e9e8;
+  text-align: center;
+  overflow: hidden;
+}
+
+.little-note > svg {
+  color: #d995a9;
+  margin: 0 auto 15px;
+}
+
+.little-note p {
+  color: #79645e;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(22px, 4vw, 30px);
+  font-style: italic;
+}
+
+.little-note span {
+  display: block;
+  margin-top: 18px;
+  color: #929b68;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+/* FOOTER */
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  padding: 30px 20px;
+  background: #929b68;
+  color: #fffaf5;
+  text-align: center;
+}
+
+footer svg {
+  width: 17px;
+  height: 17px;
+}
+
+footer p {
+  font-family: "Playfair Display", serif;
+  font-size: 15px;
+}
+
+footer span {
+  font-size: 9px;
+  letter-spacing: 2px;
+  opacity: 0.8;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 90svh;
+    padding: 75px 25px 60px;
+  }
+
+  .hero::before {
+    inset: 11px;
+  }
+
+  .hero-sticker {
+    width: 105px;
+    height: 105px;
+  }
+
+  .hero-small {
+    font-size: 18px;
+  }
+
+  .hero-subtitle {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .hero-description {
+    font-size: 12px;
+  }
+
+  .floating-decoration {
+    font-size: 19px;
+  }
+
+  .invitation {
+    padding: 75px 25px;
+  }
+
+  .invitation-card {
+    padding: 55px 25px;
+  }
+
+  .event-details {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+    width: fit-content;
+    margin: 35px auto 0;
+  }
+
+  .little-note {
+    padding: 60px 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero *,
+  .invitation *,
+  .little-note * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* =========================================
+   STICKERS — SCRAPBOOK ANIMADO
+========================================= */
+
+.scrapbook-sticker {
+  position: absolute;
+  z-index: 3;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(3px 5px 3px #79645e30);
+  transform-origin: center;
+}
+
+/* Invitación */
+.sticker-invitation {
+  width: 125px;
+  top: 7%;
+  right: 5%;
+  animation: sticker-float 5s ease-in-out infinite;
+}
+
+/* Cuenta regresiva */
+.sticker-countdown {
+  width: 110px;
+  top: 10%;
+  right: 5%;
+  animation: sticker-tilt 6s ease-in-out infinite;
+}
+
+/* Sección intermedia */
+.sticker-memories {
+  width: 125px;
+  top: 6%;
+  left: 4%;
+  animation: sticker-float 5.5s ease-in-out infinite;
+  animation-delay: 0.8s;
+}
+
+/* Confirmación */
+.sticker-rsvp {
+  width: 125px;
+  right: 4%;
+  bottom: 6%;
+  animation: sticker-tilt 5s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+/* Cierre */
+.sticker-footer {
+  width: 105px;
+  left: 7%;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: sticker-footer-float 5s ease-in-out infinite;
+}
+
+/* ANIMACIONES */
+
+@keyframes sticker-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-13px) rotate(3deg);
+  }
+}
+
+@keyframes sticker-tilt {
+  0%,
+  100% {
+    transform: rotate(-7deg) translateY(0);
+  }
+  50% {
+    transform: rotate(5deg) translateY(-9px);
+  }
+}
+
+@keyframes sticker-footer-float {
+  0%,
+  100% {
+    transform: translateY(-50%) rotate(-7deg);
+  }
+  50% {
+    transform: translateY(calc(-50% - 10px)) rotate(3deg);
+  }
+}
+
+/* CELULARES */
+@media (max-width: 600px) {
+  .sticker-invitation {
+    width: 85px;
+    top: 2%;
+    right: 2%;
+  }
+
+  .sticker-countdown {
+    width: 80px;
+    top: 3%;
+    right: 2%;
+  }
+
+  .sticker-memories {
+    width: 85px;
+    top: 2%;
+    left: 2%;
+  }
+
+  .sticker-rsvp {
+    width: 85px;
+    right: 2%;
+    bottom: 2%;
+  }
+
+  .sticker-footer {
+    width: 75px;
+    left: 2%;
+  }
+}
+
+/* ACCESIBILIDAD */
+@media (prefers-reduced-motion: reduce) {
+  .scrapbook-sticker {
+    animation: none !important;
+  }
+}

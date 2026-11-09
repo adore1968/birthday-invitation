@@ -1,0 +1,186 @@
+/* =========================================
+   COUNTDOWN — TARJETAS DE PAPEL
+========================================= */
+
+.countdown {
+  position: relative;
+  padding: 100px 24px;
+  background-color: #fff9f2;
+  background-image: radial-gradient(#e8d9cf 0.7px, transparent 0.7px);
+  background-size: 23px 23px;
+  overflow: hidden;
+}
+
+.countdown::before {
+  content: "";
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  width: min(90%, 900px);
+  height: 1px;
+  transform: translateX(-50%);
+  background: #eadbd2;
+}
+
+.countdown-content {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.countdown-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 20px;
+  color: #d995a9;
+  background: #f8e9e8;
+  border: 1px solid #edcfce;
+  border-radius: 50%;
+}
+
+.countdown-eyebrow {
+  display: block;
+  color: #929b68;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.countdown-content h2 {
+  margin-top: 17px;
+  color: #79645e;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(34px, 6vw, 48px);
+  font-weight: 500;
+}
+
+.countdown-content h2 em {
+  color: #d995a9;
+  font-weight: 500;
+}
+
+.countdown-content > p {
+  margin-top: 12px;
+  color: #a58d82;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* TARJETAS */
+
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 17px;
+  max-width: 660px;
+  margin: 45px auto 35px;
+}
+
+.countdown-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 125px;
+  padding: 20px 10px;
+  background: #fffdf9;
+  border: 1px solid #eadbd2;
+  box-shadow: 4px 5px 0 #f0e5dc;
+}
+
+.countdown-item:nth-child(even) {
+  transform: translateY(9px);
+  background: #fdf3f1;
+  border-color: #efd8d6;
+  box-shadow: 4px 5px 0 #f3dfdc;
+}
+
+.countdown-item strong {
+  color: #79645e;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(35px, 6vw, 53px);
+  font-weight: 500;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown-item:nth-child(even) strong {
+  color: #d18fa1;
+}
+
+.countdown-item span {
+  margin-top: 13px;
+  color: #929b68;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* FECHA */
+
+.countdown-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #a58d82;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.countdown-date svg {
+  color: #d995a9;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+  .countdown {
+    padding: 80px 20px;
+  }
+
+  .countdown-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 17px;
+    max-width: 360px;
+    margin: 35px auto 35px;
+  }
+
+  .countdown-item {
+    min-height: 110px;
+  }
+
+  .countdown-item:nth-child(even) {
+    transform: translateY(0);
+  }
+
+  .countdown-item strong {
+    font-size: 42px;
+  }
+
+  .countdown-date {
+    gap: 8px;
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+}
+
+@media (max-width: 350px) {
+  .countdown-grid {
+    gap: 12px;
+  }
+
+  .countdown-item {
+    min-height: 95px;
+  }
+
+  .countdown-item strong {
+    font-size: 35px;
+  }
+}

@@ -1,0 +1,310 @@
+/* =========================================
+   RSVP — CONFIRMACIÓN SCRAPBOOK
+========================================= */
+
+.rsvp-section {
+  position: relative;
+  padding: 105px 24px;
+  background-color: #fff9f2;
+  background-image: radial-gradient(#e8d9cf 0.7px, transparent 0.7px);
+  background-size: 23px 23px;
+  overflow: hidden;
+}
+
+/* ENCABEZADO */
+
+.rsvp-heading {
+  max-width: 580px;
+  margin: 0 auto 50px;
+  text-align: center;
+}
+
+.rsvp-heading > svg {
+  display: block;
+  margin: 0 auto 15px;
+  color: #d995a9;
+}
+
+.rsvp-heading > span {
+  display: block;
+  color: #929b68;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.rsvp-heading h2 {
+  margin-top: 17px;
+  color: #79645e;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(36px, 6vw, 50px);
+  font-weight: 500;
+}
+
+.rsvp-heading h2 em {
+  color: #d995a9;
+  font-weight: 500;
+}
+
+.rsvp-heading > p {
+  max-width: 440px;
+  margin: 14px auto 0;
+  color: #907e75;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+/* TARJETA */
+
+.rsvp-card {
+  position: relative;
+  width: 100%;
+  max-width: 490px;
+  margin: 0 auto;
+  padding: 48px 42px;
+  background: #fffdf9;
+  border: 1px solid #eadbd2;
+  box-shadow: 5px 6px 0 #f0e5dc;
+}
+
+/* CINTA */
+
+.rsvp-card::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 85px;
+  height: 24px;
+  transform: translateX(-50%) rotate(-3deg);
+  background: #e8c6c4;
+  opacity: 0.8;
+}
+
+/* DECORACIÓN */
+
+.rsvp-decoration {
+  position: absolute;
+  top: 20px;
+  right: 22px;
+  color: #d995a9;
+  font-family: "Playfair Display", serif;
+  font-size: 28px;
+}
+
+/* FORMULARIO */
+
+.rsvp-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.rsvp-card form > label,
+.rsvp-label {
+  margin-top: 13px;
+  color: #79645e;
+  font-family: "Playfair Display", serif;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.rsvp-card form > label span {
+  color: #a58d82;
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.rsvp-card input[type="text"],
+.rsvp-card select,
+.rsvp-card textarea {
+  width: 100%;
+  padding: 13px 14px;
+  color: #79645e;
+  background: #fffaf5;
+  border: 1px solid #eadbd2;
+  border-radius: 2px;
+  outline: none;
+  font-size: 12px;
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease;
+}
+
+.rsvp-card input[type="text"]:focus,
+.rsvp-card select:focus,
+.rsvp-card textarea:focus {
+  border-color: #d995a9;
+  background: #fffdfb;
+}
+
+.rsvp-card textarea {
+  min-height: 95px;
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.rsvp-card select {
+  cursor: pointer;
+}
+
+/* OPCIONES DE ASISTENCIA */
+
+.attendance-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 5px 0 10px;
+}
+
+.attendance-options label {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 13px 14px;
+  color: #907e75;
+  background: #fffaf5;
+  border: 1px solid #eadbd2;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.attendance-options label.selected {
+  background: #fdf0f0;
+  border-color: #d995a9;
+  color: #79645e;
+}
+
+.attendance-options input {
+  accent-color: #d995a9;
+  cursor: pointer;
+}
+
+.attendance-options label span {
+  font-size: 12px;
+}
+
+/* BOTÓN */
+
+.rsvp-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  width: 100%;
+  margin-top: 15px;
+  padding: 15px 20px;
+  color: #fffaf5;
+  background: #d995a9;
+  border: 1px solid #d995a9;
+  border-radius: 2px;
+  box-shadow: 3px 4px 0 #e9c6c5;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.rsvp-button:hover:not(:disabled) {
+  background: #c98498;
+  box-shadow: 1px 2px 0 #e9c6c5;
+}
+
+.rsvp-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+/* MENSAJES */
+
+.rsvp-footnote {
+  margin-top: 10px;
+  color: #a58d82;
+  font-size: 10px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.rsvp-error {
+  padding: 10px;
+  color: #a64d5c;
+  background: #fceced;
+  border: 1px solid #edc8cb;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* CONFIRMACIÓN EXITOSA */
+
+.rsvp-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px 5px;
+  text-align: center;
+}
+
+.rsvp-success > svg {
+  margin-bottom: 20px;
+  color: #929b68;
+}
+
+.rsvp-success h3 {
+  color: #79645e;
+  font-family: "Playfair Display", serif;
+  font-size: 27px;
+  font-weight: 500;
+}
+
+.rsvp-success p {
+  margin-top: 13px;
+  color: #907e75;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.rsvp-success span {
+  margin-top: 23px;
+  color: #d995a9;
+  font-family: "Playfair Display", serif;
+  font-size: 16px;
+  font-style: italic;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+  .rsvp-section {
+    padding: 80px 20px;
+  }
+
+  .rsvp-heading {
+    margin-bottom: 40px;
+  }
+
+  .rsvp-card {
+    padding: 43px 24px 35px;
+  }
+
+  .rsvp-decoration {
+    top: 15px;
+    right: 15px;
+    font-size: 23px;
+  }
+}
+
+@media (max-width: 350px) {
+  .rsvp-card {
+    padding: 40px 17px 30px;
+  }
+
+  .rsvp-heading > span {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+}
