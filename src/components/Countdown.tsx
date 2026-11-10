@@ -45,10 +45,20 @@ export default function Countdown() {
 
   return (
     <section className="countdown">
-      <img
+      {/* STICKER DECORATIVO */}
+      <motion.img
         src="/images/stickers/sticker-countdown.png"
         alt=""
         className="scrapbook-sticker sticker-countdown"
+        animate={{
+          y: [0, -12, 0],
+          rotate: [-7, 1, -7],
+        }}
+        transition={{
+          duration: 5.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
       />
 
       <motion.div
@@ -60,8 +70,15 @@ export default function Countdown() {
       >
         <motion.div
           className="countdown-icon"
-          animate={{ rotate: [-8, 8, -8] }}
-          transition={{ duration: 3, repeat: Infinity }}
+          animate={{
+            rotate: [-8, 8, -8],
+            y: [0, -3, 0],
+          }}
+          transition={{
+            duration: 3.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         >
           <Clock size={23} />
         </motion.div>
@@ -91,13 +108,17 @@ export default function Countdown() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.12, duration: 0.5 }}
-              whileHover={{ y: -7, scale: 1.04 }}
+              whileHover={{
+                y: -7,
+                scale: 1.04,
+                rotate: index % 2 === 0 ? -2 : 2,
+              }}
             >
               <motion.strong
                 key={item.value}
-                initial={{ opacity: 0.5, scale: 0.85 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.25 }}
+                initial={{ opacity: 0.4, scale: 0.8, y: 5 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
               >
                 {String(item.value).padStart(2, "0")}
               </motion.strong>

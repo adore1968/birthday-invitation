@@ -4,15 +4,41 @@
 
 .memories {
   position: relative;
-  padding: 105px 24px 85px;
+  padding: 110px 24px 90px;
   background-color: #f8e9e8;
   background-image: radial-gradient(#e8caca 0.7px, transparent 0.7px);
   background-size: 23px 23px;
   text-align: center;
   overflow: hidden;
+  isolation: isolate;
 }
 
+.memories::before {
+  content: "✿";
+  position: absolute;
+  top: 8%;
+  right: 7%;
+  color: #e2bfc0;
+  font-size: 32px;
+  transform: rotate(15deg);
+  pointer-events: none;
+}
+
+.memories::after {
+  content: "✧";
+  position: absolute;
+  bottom: 10%;
+  left: 7%;
+  color: #c9d0ae;
+  font-size: 35px;
+  pointer-events: none;
+}
+
+/* ENCABEZADO */
+
 .memories-heading {
+  position: relative;
+  z-index: 1;
   max-width: 600px;
   margin: 0 auto 65px;
 }
@@ -53,13 +79,15 @@
 /* GALERÍA */
 
 .memories-grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: center;
   gap: 35px;
   max-width: 1050px;
   margin: 0 auto;
-  padding: 15px 5px;
+  padding: 20px 5px;
 }
 
 /* POLAROIDS */
@@ -67,32 +95,38 @@
 .memory-card {
   position: relative;
   padding: 12px 12px 38px;
-  background: #fffdf9;
+  background: linear-gradient(145deg, #ffffff 0%, #fffdf9 70%);
   border: 1px solid #eadbd2;
-  box-shadow: 4px 7px 13px #79645e18;
+  box-shadow:
+    4px 7px 13px #79645e18,
+    0 1px 3px #79645e0d;
   transition: box-shadow 0.3s ease;
+  will-change: transform;
 }
 
-.memory-card:nth-child(1) {
-  transform: rotate(-4deg);
+/* Pequeñas diferencias de altura sin interferir con Motion */
+
+.memory-card-2 {
+  top: 12px;
 }
 
-.memory-card:nth-child(2) {
-  transform: rotate(3deg) translateY(12px);
+.memory-card-3 {
+  top: -5px;
 }
 
-.memory-card:nth-child(3) {
-  transform: rotate(-2deg) translateY(-5px);
+.memory-card-4 {
+  top: 10px;
 }
 
-.memory-card:nth-child(4) {
-  transform: rotate(4deg) translateY(10px);
+.memory-card:hover {
+  box-shadow:
+    8px 13px 22px #79645e25,
+    0 2px 5px #79645e12;
 }
 
 /* CINTA ADHESIVA */
 
-.memory-card::before {
-  content: "";
+.memory-tape {
   position: absolute;
   z-index: 2;
   top: -12px;
@@ -101,13 +135,20 @@
   height: 23px;
   transform: translateX(-50%) rotate(-4deg);
   background: #e8c6c4;
-  opacity: 0.75;
+  opacity: 0.78;
+  box-shadow: 0 1px 2px #79645e10;
 }
 
-.memory-card:nth-child(even)::before {
+.memory-card:nth-child(even) .memory-tape {
   transform: translateX(-50%) rotate(5deg);
   background: #d9dfc4;
 }
+
+.memory-card-3 .memory-tape {
+  background: #ead8b9;
+}
+
+/* FOTOS */
 
 .memory-photo {
   width: 100%;
@@ -121,7 +162,14 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.5s ease;
 }
+
+.memory-card:hover .memory-photo img {
+  transform: scale(1.04);
+}
+
+/* TEXTO */
 
 .memory-card p {
   margin-top: 16px;
@@ -142,6 +190,8 @@
 /* PIE DE GALERÍA */
 
 .memories-footer {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -157,69 +207,123 @@
   color: #d995a9;
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE TABLET */
 
 @media (max-width: 850px) {
   .memories-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 40px 35px;
+    gap: 45px 35px;
     max-width: 550px;
   }
 
-  .memory-card:nth-child(2) {
-    transform: rotate(3deg) translateY(12px);
+  .memory-card-2 {
+    top: 12px;
   }
 
-  .memory-card:nth-child(3) {
-    transform: rotate(-2deg) translateY(0);
+  .memory-card-3 {
+    top: 0;
+  }
+
+  .memory-card-4 {
+    top: 10px;
   }
 }
 
+/* RESPONSIVE CELULARES */
+
 @media (max-width: 500px) {
   .memories {
-    padding: 80px 22px 65px;
+    padding: 105px 22px 75px;
   }
 
   .memories-heading {
-    margin-bottom: 45px;
+    margin-bottom: 48px;
+  }
+
+  .memories-heading > span {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .memories-heading h2 {
+    font-size: clamp(31px, 8vw, 39px);
+  }
+
+  .memories-heading p {
+    font-size: 12px;
   }
 
   .memories-grid {
-    gap: 30px 20px;
-    padding: 12px 3px;
+    gap: 35px 20px;
+    padding: 15px 3px;
   }
 
   .memory-card {
-    padding: 8px 8px 32px;
+    padding: 9px 9px 34px;
   }
 
-  .memory-card::before {
-    width: 48px;
-    height: 18px;
-    top: -9px;
+  .memory-tape {
+    width: 50px;
+    height: 19px;
+    top: -10px;
+  }
+
+  .memory-photo {
+    aspect-ratio: 4 / 5;
   }
 
   .memory-card p {
-    margin-top: 12px;
-    font-size: 11px;
+    margin-top: 13px;
+    font-size: 12px;
   }
 
   .memory-heart {
     right: 10px;
-    bottom: 9px;
-    width: 12px;
+    bottom: 10px;
+    width: 13px;
+  }
+
+  .memory-card-2 {
+    top: 7px;
+  }
+
+  .memory-card-3 {
+    top: 0;
+  }
+
+  .memory-card-4 {
+    top: 6px;
   }
 
   .memories-footer {
-    margin-top: 45px;
+    margin-top: 48px;
     font-size: 8px;
     letter-spacing: 1.5px;
   }
+
+  .memories::before {
+    top: 5%;
+    right: 4%;
+    font-size: 26px;
+  }
+
+  .memories::after {
+    bottom: 5%;
+    left: 4%;
+    font-size: 28px;
+  }
 }
 
+/* CELULARES PEQUEÑOS */
+
 @media (max-width: 350px) {
+  .memories {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
   .memories-grid {
-    gap: 25px 14px;
+    gap: 28px 14px;
   }
 
   .memory-card {
@@ -228,5 +332,22 @@
 
   .memory-card p {
     font-size: 10px;
+  }
+
+  .memory-tape {
+    width: 43px;
+    height: 17px;
+  }
+}
+
+/* ACCESIBILIDAD */
+
+@media (prefers-reduced-motion: reduce) {
+  .memory-photo img {
+    transition: none;
+  }
+
+  .memory-card {
+    transition: none;
   }
 }

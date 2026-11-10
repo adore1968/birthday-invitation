@@ -4,18 +4,42 @@
 
 .rsvp-section {
   position: relative;
-  padding: 105px 24px;
+  padding: 115px 24px 105px;
   background-color: #fff9f2;
   background-image: radial-gradient(#e8d9cf 0.7px, transparent 0.7px);
   background-size: 23px 23px;
   overflow: hidden;
+  isolation: isolate;
+}
+
+.rsvp-section::before {
+  content: "✿";
+  position: absolute;
+  top: 10%;
+  left: 7%;
+  color: #e5c6c5;
+  font-size: 32px;
+  transform: rotate(-15deg);
+  pointer-events: none;
+}
+
+.rsvp-section::after {
+  content: "✧";
+  position: absolute;
+  right: 8%;
+  bottom: 8%;
+  color: #d9dfc4;
+  font-size: 35px;
+  pointer-events: none;
 }
 
 /* ENCABEZADO */
 
 .rsvp-heading {
+  position: relative;
+  z-index: 1;
   max-width: 580px;
-  margin: 0 auto 50px;
+  margin: 0 auto 55px;
   text-align: center;
 }
 
@@ -58,13 +82,17 @@
 
 .rsvp-card {
   position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 490px;
   margin: 0 auto;
-  padding: 48px 42px;
-  background: #fffdf9;
+  padding: 50px 42px;
+  background: radial-gradient(#eadbd2 0.45px, transparent 0.45px), #fffdf9;
+  background-size: 13px 13px;
   border: 1px solid #eadbd2;
-  box-shadow: 5px 6px 0 #f0e5dc;
+  box-shadow:
+    5px 6px 0 #f0e5dc,
+    0 12px 25px #79645e0d;
 }
 
 /* CINTA */
@@ -79,6 +107,7 @@
   transform: translateX(-50%) rotate(-3deg);
   background: #e8c6c4;
   opacity: 0.8;
+  box-shadow: 0 1px 2px #79645e10;
 }
 
 /* DECORACIÓN */
@@ -120,16 +149,23 @@
 .rsvp-card select,
 .rsvp-card textarea {
   width: 100%;
-  padding: 13px 14px;
+  padding: 14px 15px;
   color: #79645e;
   background: #fffaf5;
   border: 1px solid #eadbd2;
   border-radius: 2px;
   outline: none;
-  font-size: 12px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
   transition:
     border-color 0.25s ease,
-    background 0.25s ease;
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.rsvp-card input[type="text"]::placeholder,
+.rsvp-card textarea::placeholder {
+  color: #b9a69c;
 }
 
 .rsvp-card input[type="text"]:focus,
@@ -137,10 +173,11 @@
 .rsvp-card textarea:focus {
   border-color: #d995a9;
   background: #fffdfb;
+  box-shadow: 0 0 0 3px #d995a91c;
 }
 
 .rsvp-card textarea {
-  min-height: 95px;
+  min-height: 105px;
   resize: vertical;
   line-height: 1.7;
 }
@@ -162,23 +199,32 @@
   display: flex;
   align-items: center;
   gap: 11px;
-  padding: 13px 14px;
+  padding: 14px 15px;
   color: #907e75;
   background: #fffaf5;
   border: 1px solid #eadbd2;
   cursor: pointer;
   transition:
     background 0.25s ease,
-    border-color 0.25s ease;
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.attendance-options label:hover {
+  border-color: #d995a9;
 }
 
 .attendance-options label.selected {
   background: #fdf0f0;
   border-color: #d995a9;
   color: #79645e;
+  box-shadow: 2px 3px 0 #f2dfdc;
 }
 
 .attendance-options input {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
   accent-color: #d995a9;
   cursor: pointer;
 }
@@ -196,15 +242,17 @@
   gap: 11px;
   width: 100%;
   margin-top: 15px;
-  padding: 15px 20px;
+  padding: 16px 20px;
   color: #fffaf5;
   background: #d995a9;
   border: 1px solid #d995a9;
   border-radius: 2px;
   box-shadow: 3px 4px 0 #e9c6c5;
+  font-family: "DM Sans", sans-serif;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1px;
+  cursor: pointer;
   transition:
     background 0.25s ease,
     box-shadow 0.25s ease;
@@ -249,7 +297,7 @@
   text-align: center;
 }
 
-.rsvp-success > svg {
+.rsvp-success svg {
   margin-bottom: 20px;
   color: #929b68;
 }
@@ -280,15 +328,40 @@
 
 @media (max-width: 600px) {
   .rsvp-section {
-    padding: 80px 20px;
+    padding: 120px 20px 90px;
   }
 
   .rsvp-heading {
-    margin-bottom: 40px;
+    margin-bottom: 43px;
+  }
+
+  .rsvp-heading > span {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .rsvp-heading h2 {
+    font-size: clamp(33px, 8vw, 42px);
+  }
+
+  .rsvp-heading > p {
+    font-size: 12px;
   }
 
   .rsvp-card {
-    padding: 43px 24px 35px;
+    padding: 45px 25px 36px;
+  }
+
+  .rsvp-card form > label,
+  .rsvp-label {
+    font-size: 14px;
+  }
+
+  .rsvp-card input[type="text"],
+  .rsvp-card select,
+  .rsvp-card textarea {
+    padding: 14px;
+    font-size: 13px;
   }
 
   .rsvp-decoration {
@@ -296,15 +369,57 @@
     right: 15px;
     font-size: 23px;
   }
+
+  .rsvp-button {
+    padding: 16px 12px;
+    font-size: 10px;
+  }
+
+  .rsvp-section::before {
+    top: 5%;
+    left: 4%;
+    font-size: 26px;
+  }
+
+  .rsvp-section::after {
+    right: 4%;
+    bottom: 4%;
+    font-size: 28px;
+  }
 }
 
 @media (max-width: 350px) {
+  .rsvp-section {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
   .rsvp-card {
-    padding: 40px 17px 30px;
+    padding: 42px 17px 30px;
   }
 
   .rsvp-heading > span {
-    font-size: 9px;
-    letter-spacing: 2px;
+    font-size: 8px;
+    letter-spacing: 1.7px;
+  }
+
+  .attendance-options label {
+    padding: 12px 10px;
+  }
+
+  .attendance-options label span {
+    font-size: 11px;
+  }
+}
+
+/* ACCESIBILIDAD */
+
+@media (prefers-reduced-motion: reduce) {
+  .rsvp-card input,
+  .rsvp-card select,
+  .rsvp-card textarea,
+  .attendance-options label,
+  .rsvp-button {
+    transition: none;
   }
 }

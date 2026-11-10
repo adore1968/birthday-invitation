@@ -37,8 +37,6 @@ export default function RSVP() {
         body: data,
       });
 
-      // En modo no-cors el navegador no permite leer la respuesta
-      // de Google. Hay que verificar el registro en la planilla.
       setSubmitted(true);
     } catch {
       setError(
@@ -51,6 +49,22 @@ export default function RSVP() {
 
   return (
     <section className="rsvp-section" id="confirmacion">
+      {/* STICKER DECORATIVO */}
+      <motion.img
+        src="/images/stickers/sticker-rsvp.jpg"
+        alt=""
+        className="scrapbook-sticker sticker-rsvp"
+        animate={{
+          y: [0, -12, 0],
+          rotate: [7, 12, 7],
+        }}
+        transition={{
+          duration: 5,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
       <motion.div
         className="rsvp-heading"
         initial={{ opacity: 0, y: 30 }}
@@ -73,18 +87,25 @@ export default function RSVP() {
 
       <motion.div
         className="rsvp-card"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 40, scale: 0.97 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
         {submitted ? (
           <motion.div
             className="rsvp-success"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.9, y: 15 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            <CheckCircle2 size={48} />
+            <motion.div
+              animate={{ rotate: [0, -8, 8, 0], scale: [1, 1.08, 1] }}
+              transition={{ duration: 2.5, repeat: Infinity }}
+            >
+              <CheckCircle2 size={48} />
+            </motion.div>
+
             <h3>¡Gracias por responder!</h3>
             <p>Tu respuesta fue enviada. ¡Nos vemos en el cumple! 💗</p>
             <span>Con cariño, Luisina ♡</span>
@@ -136,6 +157,7 @@ export default function RSVP() {
                   <label htmlFor="guest-count">
                     ¿Cuántas personas asistirán?
                   </label>
+
                   <select
                     id="guest-count"
                     value={guests}
@@ -154,6 +176,7 @@ export default function RSVP() {
               <label htmlFor="guest-message">
                 ¿Querés dejarle un mensajito? <span>(opcional)</span>
               </label>
+
               <textarea
                 id="guest-message"
                 placeholder="Escribí algo lindo..."
@@ -169,7 +192,10 @@ export default function RSVP() {
                 type="submit"
                 className="rsvp-button"
                 disabled={submitting}
-                whileHover={{ scale: submitting ? 1 : 1.04, y: -3 }}
+                whileHover={{
+                  scale: submitting ? 1 : 1.04,
+                  y: submitting ? 0 : -3,
+                }}
                 whileTap={{ scale: submitting ? 1 : 0.96 }}
               >
                 <Heart size={18} />

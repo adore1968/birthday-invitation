@@ -22,6 +22,9 @@
   --text-muted: #9b8980;
   --border: #ead8d3;
   --shadow: 0 8px 25px #79645e12;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
 }
 
 /* ========================================
@@ -36,13 +39,17 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 20px;
 }
 
 body {
   min-width: 320px;
+  min-height: 100vh;
   background: var(--cream);
   font-family: "DM Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 button,
@@ -78,7 +85,8 @@ img {
 button:focus-visible,
 input:focus-visible,
 select:focus-visible,
-textarea:focus-visible {
+textarea:focus-visible,
+a:focus-visible {
   outline: 2px solid var(--sage);
   outline-offset: 3px;
 }
@@ -88,6 +96,14 @@ textarea:focus-visible {
   opacity: 1;
 }
 
+/* Evita que los stickers decorativos interfieran
+   con los botones y enlaces */
+
+.scrapbook-sticker {
+  pointer-events: none;
+  user-select: none;
+}
+
 /* ========================================
    ACCESIBILIDAD
 ======================================== */
@@ -95,5 +111,13 @@ textarea:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

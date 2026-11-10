@@ -27,6 +27,17 @@
   pointer-events: none;
 }
 
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 55px;
+  background: linear-gradient(to bottom, transparent, #e9ebdc40);
+  pointer-events: none;
+}
+
 .hero-content {
   position: relative;
   z-index: 2;
@@ -139,7 +150,8 @@
   letter-spacing: 1.5px;
   transition:
     background 0.3s ease,
-    box-shadow 0.3s ease;
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
 .open-button:hover {
@@ -192,14 +204,31 @@
   overflow: hidden;
 }
 
+/* Tarjeta estilo papel */
+
 .invitation-card {
   position: relative;
   max-width: 650px;
   margin: 0 auto;
   padding: 65px 45px;
-  background: #fffaf5;
+  background-color: #fffaf5;
+  background-image: radial-gradient(#eadbd0 0.45px, transparent 0.45px);
+  background-size: 9px 9px;
   border: 1px solid #e7d7ca;
-  box-shadow: 5px 6px 0 #d5d8c2;
+  box-shadow:
+    5px 6px 0 #d5d8c2,
+    9px 11px 18px #79645e12;
+  transform: rotate(-0.4deg);
+  transition:
+    box-shadow 0.35s ease,
+    transform 0.35s ease;
+}
+
+.invitation-card:hover {
+  transform: rotate(0deg) translateY(-3px);
+  box-shadow:
+    6px 9px 0 #d5d8c2,
+    12px 16px 22px #79645e18;
 }
 
 .invitation-card::before {
@@ -207,6 +236,23 @@
   position: absolute;
   inset: 7px;
   border: 1px dashed #e8c9c6;
+  pointer-events: none;
+}
+
+/* Cinta adhesiva */
+
+.invitation-card::after {
+  content: "";
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  width: 95px;
+  height: 27px;
+  background: #e8c9c6b8;
+  border-left: 1px solid #d9b8b4;
+  border-right: 1px solid #d9b8b4;
+  transform: translateX(-50%) rotate(-2deg);
+  box-shadow: 0 2px 4px #79645e10;
   pointer-events: none;
 }
 
@@ -287,12 +333,37 @@
   opacity: 0.7;
 }
 
+/* DECORACIONES DE INVITACIÓN */
+
+.invitation-decoration {
+  position: absolute;
+  z-index: 1;
+  color: #d995a9;
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+.invitation-decoration-one {
+  top: 16%;
+  left: 9%;
+  font-size: 35px;
+}
+
+.invitation-decoration-two {
+  right: 10%;
+  bottom: 17%;
+  color: #929b68;
+  font-size: 30px;
+}
+
 /* NOTA FINAL */
 
 .little-note {
   position: relative;
   padding: 75px 24px;
-  background: #f8e9e8;
+  background-color: #f8e9e8;
+  background-image: radial-gradient(#e8c9c5 0.6px, transparent 0.6px);
+  background-size: 20px 20px;
   text-align: center;
   overflow: hidden;
 }
@@ -316,6 +387,28 @@
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 3px;
+}
+
+/* DECORACIONES DEL CIERRE */
+
+.note-decoration {
+  position: absolute;
+  color: #d995a9;
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+.note-decoration-one {
+  top: 20%;
+  right: 13%;
+  font-size: 35px;
+}
+
+.note-decoration-two {
+  bottom: 18%;
+  left: 13%;
+  color: #929b68;
+  font-size: 30px;
 }
 
 /* FOOTER */
@@ -347,7 +440,98 @@ footer span {
   opacity: 0.8;
 }
 
-/* RESPONSIVE */
+/* BOTÓN VOLVER ARRIBA */
+
+.back-to-top {
+  position: fixed;
+  z-index: 100;
+  right: 25px;
+  bottom: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  color: #fffaf5;
+  background: #d995a9;
+  border: 1px solid #c98498;
+  border-radius: 50%;
+  box-shadow:
+    3px 4px 0 #e9c6c5,
+    0 5px 15px #79645e20;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.back-to-top:hover {
+  background: #c98498;
+  box-shadow: 1px 2px 0 #e9c6c5;
+}
+
+.back-to-top-arrow {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  stroke-width: 3;
+}
+
+/* STICKERS — SCRAPBOOK */
+
+.scrapbook-sticker {
+  position: absolute;
+  z-index: 3;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(3px 5px 3px #79645e30);
+  transform-origin: center;
+  will-change: transform;
+}
+
+/* Invitación */
+
+.sticker-invitation {
+  width: 125px;
+  top: 7%;
+  right: 5%;
+}
+
+/* Cuenta regresiva */
+
+.sticker-countdown {
+  width: 110px;
+  top: 10%;
+  right: 5%;
+}
+
+/* Sección intermedia */
+
+.sticker-memories {
+  width: 125px;
+  top: 6%;
+  left: 4%;
+}
+
+/* Confirmación */
+
+.sticker-rsvp {
+  width: 125px;
+  right: 4%;
+  bottom: 6%;
+}
+
+/* Cierre */
+
+.sticker-footer {
+  width: 105px;
+  left: 7%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* CELULARES */
 
 @media (max-width: 600px) {
   .hero {
@@ -397,10 +581,99 @@ footer span {
     margin: 35px auto 0;
   }
 
+  .invitation-decoration-one {
+    top: 8%;
+    left: 3%;
+    font-size: 27px;
+  }
+
+  .invitation-decoration-two {
+    right: 4%;
+    bottom: 8%;
+    font-size: 24px;
+  }
+
   .little-note {
     padding: 60px 20px;
   }
+
+  .note-decoration-one {
+    top: 10%;
+    right: 5%;
+    font-size: 27px;
+  }
+
+  .note-decoration-two {
+    bottom: 10%;
+    left: 5%;
+    font-size: 24px;
+  }
+
+  .back-to-top {
+    right: 16px;
+    bottom: 18px;
+    width: 47px;
+    height: 47px;
+  }
+
+  .sticker-invitation {
+    width: clamp(78px, 19vw, 95px);
+    top: 6%;
+    right: 2%;
+  }
+
+  .sticker-countdown {
+    width: clamp(72px, 17vw, 88px);
+    top: 7%;
+    right: 2%;
+  }
+
+  .sticker-memories {
+    width: clamp(65px, 16vw, 82px);
+    top: 2%;
+    left: 2%;
+  }
+
+  .sticker-rsvp {
+    width: clamp(65px, 16vw, 82px);
+    right: 2%;
+    bottom: 2%;
+  }
+
+  .sticker-footer {
+    width: clamp(60px, 15vw, 76px);
+    left: 2%;
+    top: 58%;
+    transform: none;
+  }
 }
+
+/* CELULARES MUY ANGOSTOS */
+
+@media (max-width: 380px) {
+  .sticker-invitation {
+    width: 68px;
+  }
+
+  .sticker-memories,
+  .sticker-rsvp {
+    width: 58px;
+  }
+
+  .sticker-countdown,
+  .sticker-footer {
+    width: 58px;
+  }
+
+  .back-to-top {
+    right: 12px;
+    bottom: 14px;
+    width: 43px;
+    height: 43px;
+  }
+}
+
+/* ACCESIBILIDAD */
 
 @media (prefers-reduced-motion: reduce) {
   .hero *,
@@ -409,131 +682,7 @@ footer span {
     animation: none !important;
     transition: none !important;
   }
-}
 
-/* =========================================
-   STICKERS — SCRAPBOOK ANIMADO
-========================================= */
-
-.scrapbook-sticker {
-  position: absolute;
-  z-index: 3;
-  height: auto;
-  object-fit: contain;
-  pointer-events: none;
-  filter: drop-shadow(3px 5px 3px #79645e30);
-  transform-origin: center;
-}
-
-/* Invitación */
-.sticker-invitation {
-  width: 125px;
-  top: 7%;
-  right: 5%;
-  animation: sticker-float 5s ease-in-out infinite;
-}
-
-/* Cuenta regresiva */
-.sticker-countdown {
-  width: 110px;
-  top: 10%;
-  right: 5%;
-  animation: sticker-tilt 6s ease-in-out infinite;
-}
-
-/* Sección intermedia */
-.sticker-memories {
-  width: 125px;
-  top: 6%;
-  left: 4%;
-  animation: sticker-float 5.5s ease-in-out infinite;
-  animation-delay: 0.8s;
-}
-
-/* Confirmación */
-.sticker-rsvp {
-  width: 125px;
-  right: 4%;
-  bottom: 6%;
-  animation: sticker-tilt 5s ease-in-out infinite;
-  animation-delay: 0.5s;
-}
-
-/* Cierre */
-.sticker-footer {
-  width: 105px;
-  left: 7%;
-  top: 50%;
-  transform: translateY(-50%);
-  animation: sticker-footer-float 5s ease-in-out infinite;
-}
-
-/* ANIMACIONES */
-
-@keyframes sticker-float {
-  0%,
-  100% {
-    transform: translateY(0) rotate(-5deg);
-  }
-  50% {
-    transform: translateY(-13px) rotate(3deg);
-  }
-}
-
-@keyframes sticker-tilt {
-  0%,
-  100% {
-    transform: rotate(-7deg) translateY(0);
-  }
-  50% {
-    transform: rotate(5deg) translateY(-9px);
-  }
-}
-
-@keyframes sticker-footer-float {
-  0%,
-  100% {
-    transform: translateY(-50%) rotate(-7deg);
-  }
-  50% {
-    transform: translateY(calc(-50% - 10px)) rotate(3deg);
-  }
-}
-
-/* CELULARES */
-@media (max-width: 600px) {
-  .sticker-invitation {
-    width: 85px;
-    top: 2%;
-    right: 2%;
-  }
-
-  .sticker-countdown {
-    width: 80px;
-    top: 3%;
-    right: 2%;
-  }
-
-  .sticker-memories {
-    width: 85px;
-    top: 2%;
-    left: 2%;
-  }
-
-  .sticker-rsvp {
-    width: 85px;
-    right: 2%;
-    bottom: 2%;
-  }
-
-  .sticker-footer {
-    width: 75px;
-    left: 2%;
-  }
-}
-
-/* ACCESIBILIDAD */
-@media (prefers-reduced-motion: reduce) {
   .scrapbook-sticker {
     animation: none !important;
   }

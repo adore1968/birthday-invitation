@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion } from "motion/react";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import {
   Heart,
   Sparkles,
@@ -7,6 +7,7 @@ import {
   MapPin,
   Clock,
   Gift,
+  ArrowUp,
 } from "lucide-react";
 
 import "./App.css";
@@ -17,6 +18,21 @@ import RSVP from "./components/RSVP";
 
 function App() {
   const [opened, setOpened] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 450);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const eventDetails = [
     {
@@ -47,6 +63,13 @@ function App() {
     setOpened(true);
 
     document.getElementById("invitation")?.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
       behavior: "smooth",
     });
   };
@@ -86,12 +109,17 @@ function App() {
         >
           <span className="eyebrow">UNA FECHA PARA RECORDAR</span>
 
+          {/* SNOOPY PRINCIPAL */}
           <motion.div
             className="hero-sticker"
-            animate={{ y: [0, -7, 0] }}
+            animate={{
+              y: [0, -10, 0],
+              rotate: [0, 2, 0, -2, 0],
+            }}
             transition={{
               duration: 5,
               repeat: Infinity,
+              ease: "easeInOut",
             }}
           >
             <img
@@ -110,7 +138,7 @@ function App() {
             Luisina <em>21</em>
           </h1>
 
-          <p className="hero-subtitle">TWENTY-ONE & FEELING FINE</p>
+          <p className="hero-subtitle">CHAPTER 21</p>
 
           <div className="hero-divider">
             <span>✿</span>
@@ -126,7 +154,7 @@ function App() {
           <motion.button
             className="open-button"
             onClick={scrollToInvitation}
-            whileHover={{ y: -3 }}
+            whileHover={{ y: -3, scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >
             {opened ? "Ver invitación" : "Descubrir invitación"}
@@ -141,27 +169,50 @@ function App() {
       <motion.section
         className="invitation section-padding"
         id="invitation"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{
-          once: true,
-          amount: 0.2,
-        }}
-        transition={{ duration: 0.8 }}
+        initial={{ opacity: 0, y: 35 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.9, ease: "easeOut" }}
       >
+        {/* DECORACIONES */}
+        <motion.span
+          className="invitation-decoration invitation-decoration-one"
+          animate={{ rotate: [0, 12, 0], y: [0, -7, 0] }}
+          transition={{ duration: 6, repeat: Infinity }}
+        >
+          ✿
+        </motion.span>
+
+        <motion.span
+          className="invitation-decoration invitation-decoration-two"
+          animate={{ rotate: [0, -10, 0], y: [0, 8, 0] }}
+          transition={{ duration: 7, repeat: Infinity }}
+        >
+          ✧
+        </motion.span>
+
         {/* STICKER DECORATIVO */}
-        <img
+        <motion.img
           src="/images/stickers/sticker-invitation.png"
           alt=""
           className="scrapbook-sticker sticker-invitation"
+          animate={{
+            y: [0, -12, 0],
+            rotate: [8, 13, 8],
+          }}
+          transition={{
+            duration: 5.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         />
 
         <motion.div
           className="invitation-card"
-          initial={{ opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 35, rotate: -1 }}
+          whileInView={{ opacity: 1, y: 0, rotate: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
         >
           <span className="section-label">YOU'RE INVITED</span>
 
@@ -185,6 +236,7 @@ function App() {
                 viewport={{ once: true }}
                 transition={{
                   delay: index * 0.15,
+                  duration: 0.6,
                 }}
               >
                 <item.icon />
@@ -213,15 +265,42 @@ function App() {
       {/* CIERRE */}
       <motion.section
         className="little-note"
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.9, ease: "easeOut" }}
       >
-        <img
+        {/* DECORACIONES */}
+        <motion.span
+          className="note-decoration note-decoration-one"
+          animate={{ rotate: [0, 15, 0], y: [0, -8, 0] }}
+          transition={{ duration: 5, repeat: Infinity }}
+        >
+          ♡
+        </motion.span>
+
+        <motion.span
+          className="note-decoration note-decoration-two"
+          animate={{ rotate: [0, -12, 0], y: [0, 7, 0] }}
+          transition={{ duration: 6, repeat: Infinity }}
+        >
+          ✧
+        </motion.span>
+
+        {/* STICKER DECORATIVO */}
+        <motion.img
           src="/images/stickers/sticker-footer.png"
           alt=""
           className="scrapbook-sticker sticker-footer"
+          animate={{
+            y: [0, -10, 0],
+            rotate: [-7, 0, -7],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         />
 
         <Sparkles size={20} />
@@ -239,6 +318,27 @@ function App() {
 
         <span>20 · 12 · 2026</span>
       </footer>
+
+      {/* BOTÓN VOLVER ARRIBA */}
+      <AnimatePresence>
+        {showBackToTop && (
+          <motion.button
+            className="back-to-top"
+            onClick={scrollToTop}
+            aria-label="Volver arriba"
+            title="Volver arriba"
+            initial={{ opacity: 0, scale: 0.5, y: 15 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.5, y: 15 }}
+            whileHover={{ scale: 1.12, rotate: -8 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ duration: 0.25 }}
+          >
+            <Heart size={20} fill="currentColor" />
+            <ArrowUp size={11} className="back-to-top-arrow" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
