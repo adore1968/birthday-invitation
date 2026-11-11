@@ -51,7 +51,7 @@ export default function RSVP() {
     <section className="rsvp-section" id="confirmacion">
       {/* STICKER DECORATIVO */}
       <motion.img
-        src="/images/stickers/sticker-rsvp.jpg"
+        src="/images/stickers/sticker-rsvp.png"
         alt=""
         className="scrapbook-sticker sticker-rsvp"
         animate={{
